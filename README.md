@@ -36,7 +36,8 @@ linked list.
 Instead of storing just a string, each node of our sorted linked list will
 store a string and an integer which represents a quantity. Instead of
 inserting items at the head, new items will be inserted in such a way that the
-list remains sorted by quantity after each node is inserted.
+list remains sorted by *descending* quantity after each node is inserted. This
+means that the node with the largest quantity will be at the head of the list.
 
 The `print()` method is already implemented, but you will need to implement the
 following additional operations:
@@ -74,7 +75,7 @@ requires a very small amount of code.
 **Question 2:** Draw a picture of a linked list with one node, and describe how
 you could test that the methods work correctly on this list.
 
-Implement a test named `testSinlgeNode`, and make *limited* changes to the
+Implement a test named `testSingleNode`, and make *limited* changes to the
 `SortedLinkedList` class so that *both* tests pass.
 
 ### Adding a Second Node
@@ -103,7 +104,7 @@ This code uses a temporary `Node` reference to keep track of our current locatio
 
 ### Repeated Head Insert
 
-** Question 4:** Draw a picture of a linked list with three nodes, the first two from Question 3 and one other node *before* that node.  Do you think your code will work to add nodes in reverse order?
+**Question 4:** Draw a picture of a linked list with three nodes, the first two from Question 3 and one other node *before* that node.  Do you think your code will work to add nodes in reverse order?
 
 Implement a test named `testRepeatedHeadInsert`, and make any necessary changes to the `SortedLinkedList` class so that all four tests pass.
 
@@ -131,20 +132,20 @@ while(curr != null)
 
 Before you continue, you should trace this code for a sample list of four nodes.
 
-**Question 4:** Draw a picture of a list with one node.  What should `prev` be so we can add a second node to the end of the list?
+**Question 5:** Draw a picture of a list with one node.  What should `prev` be so we can add a second node to the end of the list?
 
 Implement a test named `testSecondTail`, and make the necessary changes to the `SortedLinkedList` so that all your tests pass.
 
 
-**Question 5:** Draw a picture of a list with two nodes.  What should `prev` be so that we can add a third node in the middle of the list?
+**Question 6:** Draw a picture of a list with two nodes.  What should `prev` be so that we can add a third node in the middle of the list?
 
 Implement a test named `testMiddleThird`, and make the necessary changes to the `SortedLinkedList` so that all your tests pass.
 
-**Question 6:** Now that all tests pass, is this convincing evidence that the
+**Question 7:** Now that all tests pass, is this convincing evidence that the
 class is working?  If so, explain why.  If not, describe further tests needed
 (and implement them).
 
 ### Reflection
 
-**Question 7:** Reflect on what you learned in this lab.  How has implementing
+**Question 8:** Reflect on what you learned in this lab.  How has implementing
 these methods "from scratch" helped clarify your understanding of linked lists?
