@@ -104,7 +104,9 @@ This code uses a temporary `Node` reference to keep track of our current locatio
 
 ### Repeated Head Insert
 
-**Question 4:** Draw a picture of a linked list with three nodes, the first two from Question 3 and one other node *before* that node.  Do you think your code will work to add nodes in reverse order?
+**Question 4:** Draw a picture of a linked list with three nodes, the first two
+from Question 3 and one other node *before* that node.  Do you think your code
+will work to repeatedly add nodes that belong at the head?
 
 Implement a test named `testRepeatedHeadInsert`, and make any necessary changes to the `SortedLinkedList` class so that all four tests pass.
 
