@@ -22,4 +22,15 @@ public class SortedLinkedListTest extends TestCase {
     assertFalse(l.isMember("Fred"));
   }
   
+  public void testSingleNode() {
+    SortedLinkedList l = new SortedLinkedList();
+    
+    l.insert("Fred", 1);
+    
+    
+    assertEquals("Fred", l.getName(0));
+    assertEquals(1, l.getQuantity(0));
+    assertEquals(1, l.length());
+    assertTrue(l.isMember("Fred"));
+  }
 }

@@ -34,6 +34,9 @@ public class SortedLinkedList
    */
   public String getName(int index)
   {
+    if (head != null)
+      return head.getName();
+   
     return null;
   }
   
@@ -44,6 +47,9 @@ public class SortedLinkedList
    */
   public int getQuantity(int index)
   {
+    if (head != null) 
+      return head.getQuantity();
+    
     return -1;
   }
   
@@ -52,7 +58,14 @@ public class SortedLinkedList
    */
   public int length()
   {
-    return 0;
+    Node temp = head;
+    int count = 0;
+    
+    while(temp != null) {
+      count += 1;
+      temp = temp.getNext();
+    }
+    return count;
   }
   
   /**
@@ -61,6 +74,9 @@ public class SortedLinkedList
    */
   public boolean isMember(String name)
   {
+    if ( head != null)
+      return true;
+    
     return false;
   }
   
@@ -70,6 +86,10 @@ public class SortedLinkedList
    */
   public void insert(String name, int quantity)
   {
+    String nodeName = name;
+    int nodeQuantity = quantity;
     
+    head = new Node(nodeName, nodeQuantity);
+   
   }  
 }
