@@ -55,4 +55,30 @@ public class SortedLinkedListTest extends TestCase {
     assertEquals(2, l.length());
     
   }
+  
+  public void testRepeatedHeadInsert() {
+    SortedLinkedList l = new SortedLinkedList();
+    
+    l.insert("Fred", 1);
+    l.insert("Cats", 5);
+    l.insert("Spaghetti", 58);
+    
+    //Index 0, the spaghetti
+    assertEquals("Spaghetti", l.getName(0));
+    assertEquals(58, l.getQuantity(0));
+    assertTrue(l.isMember("Spaghetti"));
+
+    //Index 1, the cats.
+    assertEquals("Cats", l.getName(1));
+    assertEquals(5, l.getQuantity(1));
+    assertTrue(l.isMember("Cats"));
+    
+    //Index 2, Fred
+    assertEquals("Fred", l.getName(2));
+    assertEquals(1, l.getQuantity(2));
+    assertTrue(l.isMember("Fred"));
+    
+    //Length == 3
+    assertEquals(3, l.length());
+  }
 }
