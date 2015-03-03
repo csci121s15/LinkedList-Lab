@@ -34,7 +34,7 @@ public class SortedLinkedList
    */
   public String getName(int index)
   {
-    
+    return null;
   }
   
   /**
@@ -44,7 +44,7 @@ public class SortedLinkedList
    */
   public int getQuantity(int index)
   {
-    
+    return -1;
   }
   
   /**
@@ -52,7 +52,7 @@ public class SortedLinkedList
    */
   public int length()
   {
-    
+    return 0;
   }
   
   /**
@@ -61,7 +61,7 @@ public class SortedLinkedList
    */
   public boolean isMember(String name)
   {
-    
+    return false;
   }
   
   /**
