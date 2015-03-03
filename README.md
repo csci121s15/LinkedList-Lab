@@ -41,11 +41,11 @@ list remains sorted by quantity after each node is inserted.
 The `print()` method is already implemented, but you will need to implement the
 following additional operations:
 
-- Getting the name of a node at a specified index (similar to an array).
-- Getting the quantity of a node at a specified index.
-- Getting the length of the list.
-- Checking if a node with the specified name is in the list.
-- Inserting a node with a given name and quantity into the appropriate position
+- Get the name of a node at a specified index (similar to an array).  Return `null` if the index does not exist
+- Get the quantity of a node at a specified index.  Return -1 if the index does not exist.
+- Get the length of the list.
+- Check if a node with the specified name is in the list.
+- Insert a node with a given name and quantity into the appropriate position
 in the list.
 
 A `Node` class and a skeleton for the `SortedLinkedList` class are in the
@@ -77,36 +77,68 @@ you could test that the methods work correctly on this list.
 Implement a test named `testSinlgeNode`, and make *limited* changes to the
 `SortedLinkedList` class so that *both* tests pass.
 
-### Multiple Nodes
+### Adding a Second Node
 
-Moving to multiple nodes causes an explosion of possibilities because the
-methods may need to manipulate data:
+The second node added to the list could go before or after the first.  As we saw in class, a head insert is "easier" than adding at the middle or end.
 
-1. At the beginning of the list.
-2. In the middle of the list.
-3. At the end of the list.
+**Question 3:** Draw a picture of a linked list with two nodes, the node from Question 2 and one other node *before* that node.  Remember that we are keeping the list sorted by quanity with the largest number at the head of the list.
 
-Of these three, manipulating the list at the beginning is the easiest because
-we do not need to traverse the list.
+Implment a test named `testSecondNodeNewHead`, and make changes to the `SortedLinkedList` class so that all three tests pass.  For the `getName` and `getQuantity` methods, you will have to *traverse* the list.  Notice the code from the `print` method:
 
-**Question 3:** Draw a picture of a four-node list, and describe how you could
-test that all the methods work correctly when we only manipulate the list at
-the beginning.
+```
+  public void print()
+  {
+    Node temp = head;
+    while(temp != null)
+    {
+      System.out.print(temp.getName() + ":" + temp.getQuantity() + " ");
+      temp = temp.getNext();
+    }
+    
+    System.out.println();
+  }
+```
 
-Implement a test named `testBeginManip`, and make changes to the
-`SortedLinkedList` class so all tests pass.
+This code uses a temporary `Node` reference to keep track of our current location in the list.  After we print that `Node`, the code `temp = temp.getNext()` moves temp to the next `Node` in the list.  In `getName` and `getQuantity`, we use a similar pattern with an additional counter to keep track of our current index.
 
-**Question 4:** Using your picture of the four-node list, describe how you
-could test that all the methods work when we only manipulate the list in the
-middle.
+### Repeated Head Insert
 
-Implement a test named `testMiddleManip`, and make all tests pass.
+** Question 4:** Draw a picture of a linked list with three nodes, the first two from Question 3 and one other node *before* that node.  Do you think your code will work to add nodes in reverse order?
 
-**Question 5:** Using your picture of the four-node list, describe how you
-could test that all the methods work when we only manipulate the list at the
-end.
+Implement a test named `testRepeatedHeadInsert`, and make any necessary changes to the `SortedLinkedList` class so that all four tests pass.
 
-Implement a test named `testEndManip`, and make all tests pass.
+### Generalized Insertion
+
+We have now handled all the cases of insertion that can be completed without traversing the list (empty, single, head).  The process for a generalized insertion is to:
+
+1. Find where to insert
+2. Change the references to add the `Node` to the list
+
+To find the place where the new node belongs, we need to extend the traversal pattern:
+
+
+```
+Node curr = head;
+Node prev = null;
+
+while(curr != null)
+{
+  // do something with curr or prev
+  prev = curr;
+  curr = curr.getNext();
+}
+```
+
+Before you continue, you should trace this code for a sample list of four nodes.
+
+**Question 4:** Draw a picture of a list with one node.  What should `prev` be so we can add a second node to the end of the list?
+
+Implement a test named `testSecondTail`, and make the necessary changes to the `SortedLinkedList` so that all your tests pass.
+
+
+**Question 5:** Draw a picture of a list with two nodes.  What should `prev` be so that we can add a third node in the middle of the list?
+
+Implement a test named `testMiddleThird`, and make the necessary changes to the `SortedLinkedList` so that all your tests pass.
 
 **Question 6:** Now that all tests pass, is this convincing evidence that the
 class is working?  If so, explain why.  If not, describe further tests needed
