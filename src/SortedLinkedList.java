@@ -34,10 +34,17 @@ public class SortedLinkedList
    */
   public String getName(int index)
   {
-    if (head != null)
-      return head.getName();
-   
-    return null;
+    //Make sure there is something in the list
+    if (head == null)
+      return null;
+    
+    int i = 0;
+    Node temp = head;
+    while(i < index) {
+      temp = temp.getNext();
+      i++;
+    }
+    return temp.getName();
   }
   
   /**
@@ -47,10 +54,17 @@ public class SortedLinkedList
    */
   public int getQuantity(int index)
   {
-    if (head != null) 
-      return head.getQuantity();
+    //Make sure there is something in the list
+    if (head == null)
+      return -1;
     
-    return -1;
+    int i = 0;
+    Node temp = head;
+    while(i < index) {
+      temp = temp.getNext();
+      i++;
+    }
+    return temp.getQuantity();
   }
   
   /**
@@ -74,9 +88,16 @@ public class SortedLinkedList
    */
   public boolean isMember(String name)
   {
-    if ( head != null)
-      return true;
+    Node temp = head;
     
+    while(temp != null) {
+      if (temp.getName() == name)
+        return true;
+      
+      temp = temp.getNext();
+    }
+    
+    //All-else, return false
     return false;
   }
   
@@ -89,7 +110,18 @@ public class SortedLinkedList
     String nodeName = name;
     int nodeQuantity = quantity;
     
-    head = new Node(nodeName, nodeQuantity);
-   
+    if ( head == null)
+      head = new Node(nodeName, nodeQuantity);
+    
+    else {
+      //Create a new node that will be the head
+      Node newHead = new Node(nodeName, nodeQuantity);
+      
+      //link the newHead to the old head...
+      newHead.setNext(head);
+      
+      //Change head to reference the newHead
+      head = newHead;
+    }
   }  
 }
