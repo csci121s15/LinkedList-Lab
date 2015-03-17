@@ -1,6 +1,7 @@
 public class SortedLinkedList
 {
   private Node head;
+  private int theLength;
   
   /**
    * Create an empty list.
@@ -8,6 +9,7 @@ public class SortedLinkedList
   public SortedLinkedList()
   {
     head = null;
+    theLength = 0;
   }
   
   /**
@@ -34,7 +36,19 @@ public class SortedLinkedList
    */
   public String getName(int index)
   {
+    if (head == null)
+    {
+    return null;
+    }
     
+    Node ref = head;
+    
+    for (int i = 0; i < index; i++)
+    {
+      ref = ref.getNext();
+    }
+    
+    return ref.getName();
   }
   
   /**
@@ -44,7 +58,20 @@ public class SortedLinkedList
    */
   public int getQuantity(int index)
   {
+    if (head == null)
+    {
+    return -1;
+    }
     
+     Node ref = head;
+    
+    for (int i = 0; i < index; i++)
+    {
+      ref = ref.getNext();
+    }
+    
+      
+    return ref.getQuantity();
   }
   
   /**
@@ -52,7 +79,7 @@ public class SortedLinkedList
    */
   public int length()
   {
-    
+    return theLength;
   }
   
   /**
@@ -60,8 +87,35 @@ public class SortedLinkedList
    * the list.
    */
   public boolean isMember(String name)
-  {
+  { 
+    if (head == null)
+    {
+      return false;
+    }
     
+    if (name == head.getName())
+    {
+      return true;
+    }
+    
+    Node ref = head;
+    
+    while (ref != null)
+    {
+      ref = ref.getNext();
+      
+      if (ref == null)
+      {
+        return false;
+      } 
+      
+      if (ref.getName() == name)
+      {
+        return true;
+      }
+    }
+    
+    return false;
   }
   
   /**
@@ -70,6 +124,55 @@ public class SortedLinkedList
    */
   public void insert(String name, int quantity)
   {
+    Node curr = head;
+    Node prev = null;
+    Node newNode = new Node(name, quantity);
     
+    if (head == null)
+    {
+      head = newNode;
+      theLength += 1;
+      return;
+    }
+    
+    if (newNode.getQuantity() > head.getQuantity())
+    {
+      newNode.setNext(head);
+      head = newNode;
+      theLength += 1;
+      return;
+    }
+    
+    while (curr != null)
+    {
+      if(newNode.getQuantity() > head.getQuantity())
+      {
+        newNode.setNext(head.getNext());
+        head = newNode;
+        theLength += 1;
+        return;
+      }
+      
+      if (newNode.getQuantity() > curr.getQuantity())
+      {
+        prev.setNext(newNode);
+        newNode.setNext(curr);
+        theLength += 1;
+        return;
+      }
+      
+      if (curr.getNext() == null)
+      {
+        curr.setNext(newNode);
+        theLength += 1;
+        return;
+      }
+      
+      //do something with curr or prev
+      prev = curr;
+      curr = curr.getNext();
+    }
+    
+
   }  
 }
