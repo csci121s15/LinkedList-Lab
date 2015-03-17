@@ -81,4 +81,24 @@ public class SortedLinkedListTest extends TestCase {
     //Length == 3
     assertEquals(3, l.length());
   }
+  
+  public void testSecondTail() {
+    SortedLinkedList l = new SortedLinkedList();
+    
+    l.insert("Cats", 5);
+    l.insert("Fred", 1);
+    
+    //Index 0, the cats.
+    assertEquals("Cats", l.getName(0));
+    assertEquals(5, l.getQuantity(0));
+    assertTrue(l.isMember("Cats"));
+    
+    //Index 1, Fred
+    assertEquals("Fred", l.getName(1));
+    assertEquals(1, l.getQuantity(1));
+    assertTrue(l.isMember("Fred"));
+    
+    //Length == 2
+    assertEquals(2, l.length());
+  }
 }
