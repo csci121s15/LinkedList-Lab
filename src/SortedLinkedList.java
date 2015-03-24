@@ -1,6 +1,8 @@
 public class SortedLinkedList
 {
+
   private Node head;
+  private int theLength;
   
   /**
    * Create an empty list.
@@ -8,6 +10,7 @@ public class SortedLinkedList
   public SortedLinkedList()
   {
     head = null;
+    theLength = 0;
   }
   
   /**
@@ -20,7 +23,7 @@ public class SortedLinkedList
     Node temp = head;
     while(temp != null)
     {
-      System.out.print(temp.getName() + ":" + temp.getQuantity() + " ");
+      System.out.print(temp.getName() + " " + temp.getQuantity() + " ");
       temp = temp.getNext();
     }
     
@@ -32,9 +35,24 @@ public class SortedLinkedList
    * array, the index of the first entry is zero.  If the index is invalid,
    * this method will return null.
    */
-  public String getName(int index)
-  {
+  public String getName(int index){
     
+    Node temp = head;
+    if (temp == null) {
+      return null;
+    }
+    if (index == 0) {
+      return temp.getName();
+    }
+    for (int i = 0; i<index; i++){
+      temp = temp.getNext();
+    }
+     if (temp == null) {
+        return null;
+     }
+     else {
+        return temp.getName();
+     }
   }
   
   /**
@@ -44,15 +62,38 @@ public class SortedLinkedList
    */
   public int getQuantity(int index)
   {
-    
+    Node temp = head;
+    if (temp == null) {
+      return -1;
+    }
+    for (int i = 0; i<index; i++){
+      temp = temp.getNext();
+    }
+    if (temp == null) {
+      return -1;
+    }
+    else {
+      return temp.getQuantity();
+    }
   }
-  
+
   /**
    * This method will return the number of elements currently held in the list.
    */
-  public int length()
-  {
-    
+  public int length() {
+    Node temp = head;
+    int i = 0;
+    if (head == null) {
+      return 0;
+    }
+    else{ 
+      while (temp != null) {
+      i += 1;
+      temp = temp.getNext();
+      }
+      return i;
+    }
+         
   }
   
   /**
@@ -61,7 +102,24 @@ public class SortedLinkedList
    */
   public boolean isMember(String name)
   {
-    
+    Node temp = head;
+    if (head == null) {
+      if (name == null){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+    while(temp.getName() != name){
+      temp = temp.getNext();
+      }
+    if (temp.getName() == name){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
   
   /**
@@ -70,6 +128,57 @@ public class SortedLinkedList
    */
   public void insert(String name, int quantity)
   {
-    
-  }  
+    Node newNode = new Node(name, quantity);
+    Node temp = head;
+    Node prev = head;     
+
+    // for an empty list
+    if (head == null) {
+      head = newNode;      
+    }
+
+    else {
+      
+      //if it's larger than the head
+      if (quantity >= head.getQuantity()){
+        newNode.setNext(head);
+        head = newNode;
+      }
+      
+      //otherwise
+      else{
+        temp = temp.getNext();
+        
+        //if the head is the only item
+        if (temp == null){
+          prev.setNext(newNode);
+        }
+        
+        //adding in the middle or end with more than one item
+        else {
+          //adding in the middle
+          while (temp.getNext() != null){
+            if (quantity >= temp.getQuantity() && quantity <= prev.getQuantity()){
+              newNode.setNext(temp);
+              prev.setNext(newNode);
+              break;
+            }
+            prev = prev.getNext();
+            temp = temp.getNext();
+          }
+          //adding at the end or just before
+          if (temp.getNext() == null){
+            if (quantity >= temp.getQuantity() && quantity <= prev.getQuantity()){
+              newNode.setNext(temp);
+              prev.setNext(newNode);
+            }
+            //adds to the end
+            else {
+              temp.setNext(newNode);
+            }
+          }
+        }
+      }
+    }
+  }
 }
