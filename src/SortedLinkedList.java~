@@ -1,4 +1,4 @@
-public class SortedLinkedList
+public class SortedLinkedList2
 {
   private Node head;
   
