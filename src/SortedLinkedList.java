@@ -1,13 +1,15 @@
 public class SortedLinkedList
 {
   private Node head;
-  
   /**
    * Create an empty list.
    */
+  private int length;
+  
   public SortedLinkedList()
   {
     head = null;
+    length = 0;
   }
   
   /**
@@ -23,7 +25,7 @@ public class SortedLinkedList
       System.out.print(temp.getName() + ":" + temp.getQuantity() + " ");
       temp = temp.getNext();
     }
-    
+
     System.out.println();
   }
   
@@ -34,8 +36,23 @@ public class SortedLinkedList
    */
   public String getName(int index)
   {
+    Node f = head;
     
+    if (f == null){
+      return null;
+    }
+    if (index == 0){
+      return f.getName();
+    }
+      
+      for (int i = 0; i < index; i++){
+        f = f.getNext();
   }
+        return f.getName();
+  }
+    
+  
+  
   
   /**
    * This method will return the quantity at the specified index.  Similar to
@@ -44,7 +61,18 @@ public class SortedLinkedList
    */
   public int getQuantity(int index)
   {
+    if (head == null){
+    return -1;
+  }
     
+    Node r = head;
+   
+    for (int i = 0; i < index; i++)
+  {
+      r = r.getNext();
+  }
+    
+    return r.getQuantity();
   }
   
   /**
@@ -52,7 +80,7 @@ public class SortedLinkedList
    */
   public int length()
   {
-    
+    return length;
   }
   
   /**
@@ -61,7 +89,15 @@ public class SortedLinkedList
    */
   public boolean isMember(String name)
   {
-    
+    if (length == 0){
+      return false;
+    }
+    else if (head.getName().equals(name)){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
   
   /**
@@ -70,6 +106,9 @@ public class SortedLinkedList
    */
   public void insert(String name, int quantity)
   {
+    Node newNode = new Node(name, quantity);
     
+    head = newNode;
+    length +=1;
   }  
 }
