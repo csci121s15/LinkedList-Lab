@@ -1,0 +1,30 @@
+**Question 1**
+Inorder to test that the methods work on an empty list you have to make an new list with 
+nothing in it. Then you need to go to the methods and correctly create the code for them 
+that would return the correct answer.
+
+**Question 2**
+To test that the methods work on a single node list, we need to again create a new list. 
+then you again go to the methods and create and insertion method as well as fixing the 
+'getName" and 'getQuantity' methods so that they work with more nodes.
+
+**Question 4**
+Your code will still work to add nodes that belong at the head because you insert the new
+node to the head every time you add a new node.
+
+**Question 5**
+prev would hav to be curr inorder to add second node to the end of the list.
+
+**Question 6**
+prev would have to be prev.setNext because curr is null so the prev.setNext will place a 
+new node in between prev and curr.
+
+**Question 7**
+I this that this is evidence that the class is working because we tested adding a new node
+to the begging, end, and middle.
+
+**Question 8**
+Implementing the methods "from scratch" was very challenging, however it helped to 
+understand the importance of manipulating the methods inorder to get to the finished 
+linke list.
+  
