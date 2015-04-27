@@ -26,8 +26,10 @@ public class testLinkedList extends TestCase {
   {
     SortedLinkedList list = new SortedLinkedList();
     list.insert("Cats", 6);
+    assertTrue(list.isMember("Cats"));
     assertEquals(1, list.length());
-    assertEquals(true, list.isMember("Cats"));
+    assertEquals(6, list.getQuantity(0));
+    assertEquals("Cats", list.getName(0));
   }
   
   public void testSecondNodeNewHead()
@@ -36,6 +38,12 @@ public class testLinkedList extends TestCase {
     list.insert("Cats", 6);
     list.insert("Dogs", 2);
     assertEquals(2, list.length());
+    assertEquals(6, list.getQuantity(0));
+    assertEquals(2, list.getQuantity(1));
+    assertEquals("Cats", list.getName(0));
+    assertEquals("Dogs", list.getName(1));
+    assertTrue(list.isMember("Cats"));
+    assertTrue(list.isMember("Dogs"));
   }
   
   public void testRepeatedHeadInsert()
@@ -47,9 +55,7 @@ public class testLinkedList extends TestCase {
     list.insert("Squirrels", 5);
     list.insert("Birds", 3);
     assertEquals(5, list.length());
+    // should be order from greatest to least
+    list.print();
   }
-  
-  public void testSecondTail()
-  {
-  } 
 }

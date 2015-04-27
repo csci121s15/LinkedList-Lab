@@ -9,7 +9,6 @@ public class SortedLinkedList
   {
     head = null;
   }
-  
   /**
    * Print all the elements of the list to the console.  Each element will have
    * the form "name:quantity" and the entries will be separated by a single
@@ -18,6 +17,7 @@ public class SortedLinkedList
   public void print()
   {
     Node temp = head;
+    
     while(temp != null)
     {
       System.out.print(temp.getName() + ":" + temp.getQuantity() + " ");
@@ -33,16 +33,16 @@ public class SortedLinkedList
    * this method will return null.
    */
   public String getName(int index)
-  {
-    Node node = head;
-    if(node != null) 
-    {
-      return node.getName();
-    }
-    else 
-    {
-      return null;
-    }
+  { 
+     if(head == null)
+       return null;
+     
+     Node node = head;
+     
+     for(int i = 0; i < index; i++)
+       node = node.getNext();
+      
+     return node.getName();
   }
   
   /**
@@ -52,29 +52,15 @@ public class SortedLinkedList
    */
   public int getQuantity(int index)
   {
-    Node node = head;
-    if(node != null) 
-    {
-      return node.getQuantity();
-    }
-    else 
-    {
+    if(head == null)
       return -1;
-    }
-  }
-    
-    /* Dr Coleman's work
-     * public int getQuantity(int index)
-     * {
-     * if(index < 0 || index >= length)
-     * return -1;
-     * 
-     * // index D valid
-     * Node curr = head
-     * for(int i = 0; i < ???; i++)
-     * curr = curr.getNext();
-     * 
-     * return curr.getQuantity()
+     
+     Node node = head;
+     
+     for(int i = 0; i < index; i++)
+       node = node.getNext();
+      
+     return node.getQuantity();
   }
   
   /**
@@ -84,6 +70,7 @@ public class SortedLinkedList
   {
     int count = 0;
     Node node = head;
+    
     while(node != null) 
     {
       count += 1;
@@ -99,12 +86,12 @@ public class SortedLinkedList
   public boolean isMember(String name)
   {
     Node node = head;
+    
     while(node != null) 
     {
       if(node.getName() == name)
-      {
         return true;
-      }
+      
       node = node.getNext();
     }
     return false;
@@ -114,22 +101,44 @@ public class SortedLinkedList
    * This method will add the specified name/quantity to the list in sorted
    * order.  This order is specified by the quantity from low to high.
    */
-  
-  // Add sorting for this method
   public void insert(String name, int quantity)
   {
     Node newNode = new Node(name, quantity);
-    newNode.setNext(head);
-    head = newNode;
     
-    // Sort the list
-//    Node temp = head;
-//    while(temp.getNext() != null)
-//    {
-//      if(temp.getQuantity < temp.getNext().getQuantity())
-//      {
-//        temp.setNext(temp.getNext());
-//      }
+    // head case one
+    if(head == null)
+    {
+      head = newNode;
+      return;
     }
+    
+    // head case two
+    if(newNode.getQuantity() > head.getQuantity())
+    {
+      newNode.setNext(head);
+      head = newNode;
+      return;
+    }
+    
+    // middle
+    Node curr = head;
+    Node prev = null;
+    
+    while(curr != null)
+    {
+      if(newNode.getQuantity() > curr.getQuantity())
+      {
+        newNode.setNext(curr);
+        prev.setNext(newNode);
+        return;
+      }
+      
+      prev = curr;
+      curr = curr.getNext();
+    }
+    
+    // tail
+    prev.setNext(newNode);
+        
   }
 }
