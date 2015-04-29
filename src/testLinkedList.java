@@ -55,7 +55,40 @@ public class testLinkedList extends TestCase {
     list.insert("Squirrels", 5);
     list.insert("Birds", 3);
     assertEquals(5, list.length());
+    assertEquals("Hippos", list.getName(0));
+    assertEquals("Dogs", list.getName(4));
     // should be order from greatest to least
-    list.print();
+    //list.print();
   }
+  
+  public void testSecondTail() {
+    SortedLinkedList list = new SortedLinkedList();
+    list.insert("Dogs", 2);
+    list.insert("Cats", 6);
+    assertEquals("Cats", list.getName(0));
+    assertEquals("Dogs", list.getName(1));
+  }
+
+  public void testMiddleThird() {
+    SortedLinkedList list = new SortedLinkedList();
+    list.insert("Dogs", 2);
+    list.insert("Cats", 6);
+    list.insert("Birds", 3);
+    assertEquals("Cats", list.getName(0));
+    assertEquals("Birds", list.getName(1));
+    assertEquals("Dogs", list.getName(2));
+  }
+  
+  public void testInsertFront() {
+    SortedLinkedList list = new SortedLinkedList();
+    list.insert("Dogs", 2);
+    list.insert("Birds", 3);
+    list.insert("Hippos", 11);
+    list.insert("Squirrels", 5);
+    assertEquals("Hippos", list.getName(0));
+    assertEquals("Squirrels", list.getName(1));
+    assertEquals("Birds", list.getName(2));
+    assertEquals("Dogs", list.getName(3));
+  }
+
 }
