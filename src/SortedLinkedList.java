@@ -1,6 +1,7 @@
 public class SortedLinkedList
 {
   private Node head;
+  private int thelength;
   
   /**
    * Create an empty list.
@@ -8,6 +9,7 @@ public class SortedLinkedList
   public SortedLinkedList()
   {
     head = null;
+    thelength = 0;
   }
   
   /**
@@ -34,7 +36,11 @@ public class SortedLinkedList
    */
   public String getName(int index)
   {
-    
+    if (head == null)
+    return null;
+ 
+    else
+      return head.getName();
   }
   
   /**
@@ -44,7 +50,10 @@ public class SortedLinkedList
    */
   public int getQuantity(int index)
   {
-    
+    if (head == null)
+      return -1;
+    else
+      return head.getQuantity();
   }
   
   /**
@@ -52,7 +61,7 @@ public class SortedLinkedList
    */
   public int length()
   {
-    
+    return thelength;
   }
   
   /**
@@ -61,7 +70,7 @@ public class SortedLinkedList
    */
   public boolean isMember(String name)
   {
-    
+    return false;
   }
   
   /**
@@ -70,6 +79,12 @@ public class SortedLinkedList
    */
   public void insert(String name, int quantity)
   {
+    Node n; 
+    n = new Node(name , quantity);
+    n.setNext(head);
     
+    head = n;
+    
+    thelength++;
   }  
 }
