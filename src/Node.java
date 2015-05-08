@@ -1,3 +1,4 @@
+
 /**
  * This class represents a single node in a linked list.  The data stored
  * in the node is immutable, but the next field can be modified.
